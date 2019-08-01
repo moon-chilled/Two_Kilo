@@ -4,15 +4,15 @@
 #include<sys/param.h>
 char*b,**q;
 int(*r)()=refresh,f,c,h=1,y=1,x=0,Y,X=0,S=sizeof(q);
-#define P(m)(puts(m),abort(),1);
+#define P(m)(puts(m),exit(1),1);
 #define R realloc
 #define A(s)calloc(1,s);
 #define M memcpy
 #define C strcpy
 #define L strlen
 #define B break;
-#define U getmaxyx(stdscr,Y,X);X-=2;for(f=1;f<h;f++)if(L(v[f])>X){c=v[f][X-1];v[f][X-1]=0;mvprintw(f-1,0,v[f]);v[f][X-1]=c;}else mvprintw(f-1,0,v[f]);move(y-1,x);r();
-main(i,v)char**v;{if(i^2)P("no file")strcmp(v[1],"-h")||P("ctrl-x to save")
+#define U getmaxyx(stdscr,Y,X);X-=2;for(f=1;f<=h;f++)if(L(v[f])>X){c=v[f][X-1];v[f][X-1]=0;mvprintw(f-1,0,v[f]);v[f][X-1]=c;}else mvprintw(f-1,0,v[f]);move(y-1,x);r();
+main(i,v)char**v;{if(i^2)P("need a file")strcmp(v[1],"-h")||P("^x to save")
 f=open(b=v[1],0);f||P("can't read file")
 v=              A(  S*2)v[0]  =b;v[1]=A(1)while(read(
 f,              &c  ,1))if(c  ==1          +9)v=R(
@@ -32,7 +32,7 @@ q=R(0,S*(--h));M(q,v,(y-1)*S);q[y-1]=A(L(v[y])
 v[  y]);M(q+  y,v+y+1,S*(h-y));y
 --  ;h--;v=q  ;}}else{b=A(
 L(  v[y]))M   (b  ,v[y],x-1);C(b+x-1,v[y]+x);v[
-y]  =b;x--   ;}B  ;;  case'\n':v=R(v        ,S*(++
+y]  =b;x--   ;}B  ;;  case 10:v=R(v,        S*(++
 h+  1));M   (v+y+2,v  +y+1,(h-y-1)*          S);
 v[  y+1]   =A(L(  v[  y])-x+1)C(v[  y+1],v[y  ]+x
 );  x=v   [y++][  x]  =0;B;default  :if(((((  31+
