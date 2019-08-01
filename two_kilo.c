@@ -12,7 +12,7 @@ int(*r)()=refresh,f,c,h=1,y=1,x=0,Y,X=0,S=sizeof(q);
 #define L strlen
 #define B break;
 #define U getmaxyx(stdscr,Y,X);X-=2;for(f=1;f<=h;f++)if(L(v[f])>X){c=v[f][X-1];v[f][X-1]=0;mvprintw(f-1,0,v[f]);v[f][X-1]=c;}else mvprintw(f-1,0,v[f]);move(y-1,x);r();
-main(i,v)char**v;{if(i^2)P("need a file")strcmp(v[1],"-h")||P("^x to save")
+main(i,v)char**v;{if(i^2)P("need file")strcmp(v[1],"-h")||P("^x saves")
 f=open(b=v[1],0);f||P("can't read file")
 v=              A(  S*2)v[0]  =b;v[1]=A(1)while(read(
 f,              &c  ,1))if(c  ==1          +9)v=R(
@@ -40,7 +40,7 @@ v[  y+1]   =A(L(  v[  y])-x+1)C(v[  y+1],v[y  ]+x
 L(       v[y])+2  );  v[y][L(v[y])  +1]=0;M(  v[y
 ]+  x+1,  v[y]+x  ,L  (v[y])-x);v[  y][x++]=  c;}B
 }U  };Q:   /**GO  TO  SRY -Elronnd  */endwin  ();
-b=  fopen   (v[0  ],  "w");b||P("  cant write file");
-c=  10;for   (Y=  1;  Y<h;Y++){(1)  ;fwrite(  v
-[Y  ],L((v[   Y]  ))            ,1,          b);fwrite
+b=  fopen   (v[0  ],  "w");b||P("    cannot   write file")
+c=  10;for   (Y=  1;  Y<=h;Y++){1;  fwrite(v  [Y
+],  L((v[Y]   ))  ,1            ,b)          ;fwrite
 (&  c,1,1,b)  ;}  ;;            ;;;;        close(b);}
